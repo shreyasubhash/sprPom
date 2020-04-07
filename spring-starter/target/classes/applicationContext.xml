@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<!-- Register our beans here -->
+
+<beans default-init-method="" default-destroy-method="">
+
+	<!-- Register the Engineer class as a bean here -->
+
+	<!-- <bean class="com.ibm.training.Engineer" id="theEngineer"> Constructor 
+		Injection here <constructor-arg value="432" type="java.lang.Integer" index="0"></constructor-arg> 
+		<constructor-arg value="Aditya" type="java.lang.String" index="1"></constructor-arg> 
+		Setter Injection here for ID and Name of this Engineer <property name="engId" 
+		value="567"></property> <property name="engName" value="Sameer"></property> 
+		</bean> -->
+
+	<!-- <bean class="com.ibm.training.Engineer" id="theEngineerSecond"> </bean> -->
+
+	<!-- Define the SoftwareEngineer bean here -->
+	<!-- <bean class="com.ibm.training.SoftwareEngineer" id="softwareEngineer"> 
+		<property name="address1" ref="address1"></property> <property name="address2" 
+		ref="address3"></property> </bean> -->
+
+	<bean class="com.ibm.training.SoftwareEngineer"
+		id="softwareEngineer" scope="prototype" init-method="atInit" destroy-method="beforeDestroy">
+
+		<!-- Create an inner bean here which would just be particular to this SE -->
+		<property name="address1">
+
+			<bean class="com.ibm.training.Address">
+				<property name="location" value="Noida"></property>
+				<property name="pinCode" value="119987"></property>
+			</bean>
+
+		</property>
+
+		<property name="address2" ref="theAddress"></property>
+	</bean>
+
+
+	<!-- Define the bean for Address -->
+	<bean class="com.ibm.training.Address" id="theAddress">
+		<property name="location" value="Bangalore"></property>
+		<property name="pinCode" value="560045"></property>
+	</bean>
+
+	<!-- <bean class="com.ibm.training.Address" id="theAddress2">
+		<property name="location" value="Pune"></property>
+		<property name="pinCode" value="566655"></property>
+	</bean>-->
+
+	<bean class="com.ibm.training.Address" id="address3">
+		<property name="location" value="Delhi"></property>
+		<property name="pinCode" value="110096"></property>
+	</bean> 
+
+
+	<!-- <bean class="com.ibm.training.NetworkEngineer"
+		id="networkEngineer">
+		Setter injection for list of addresses
+
+		<property name="addresses">
+			Inject the values for list
+			<list>
+				<ref bean="theAddress" />
+				<ref bean="theAddress2" />
+				<ref bean="address3" />
+			</list>
+		</property>
+
+	</bean> -->
+	
+	
+	<!-- <bean class="com.ibm.training.CivilEngineer" id="civilEngineer" autowire="byName">
+	<bean class="com.ibm.training.CivilEngineer" id="civilEngineer" autowire="byType"> -->
+	<bean class="com.ibm.training.CivilEngineer" id="civilEngineer" name="cE" autowire="constructor" scope="singleton">
+	
+		
+	</bean>
+</beans>   
+        
+        
